@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Copy docker-compose.yml to EC2
+      copy:
+        src: ../docker/docker-compose.yml
+        dest: /home/ubuntu/docker-compose.yml
+
+    - name: Deploy Wiki.js with Docker Compose
+      shell: docker-compose -f /home/ubuntu/docker-compose.yml up -d
